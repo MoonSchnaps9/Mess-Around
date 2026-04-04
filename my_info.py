@@ -1,3 +1,5 @@
-print("Name: Guillaume")
+print("Name: Guillaume Schnaps")
 print("Job: Continuous Improvement Expert")
 print("Why I want to learn Python: I want to work in Space industry, not sure if Python is used but I want to be able to use it if it is")
+print("City: Prague")
+print("Goal: Space Industry")
