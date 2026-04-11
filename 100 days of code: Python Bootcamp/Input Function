@@ -1,0 +1,2 @@
+#Discover Input fucntion + String Concatenation
+print("hello " + input("what is your name?") + "!")
