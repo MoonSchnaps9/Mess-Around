@@ -5,7 +5,7 @@ tip_user_want_to_give = input("How much tip would you like to give? 10, 12, or 1
 Number_of_People_to_Split_Bill = input("How many people to split the bill? ")
 
 Total_bill_with_Tip = int(total_bill) + (int(tip_user_want_to_give) / 100) * int(total_bill)
-Final_price_per_person = Total_bill_with_Tip / int(Number_of_People_to_Split_Bill)
+Price_per_person = Total_bill_with_Tip / int(Number_of_People_to_Split_Bill)
 
-round(Final_price_per_person, 2)
-print(f"Each person should pay: ${Final_price_per_person}")
+Rounded_Price_per_Person = round(Price_per_person, 2)
+print(f"Each person should pay: ${Rounded_Price_per_Person}")
