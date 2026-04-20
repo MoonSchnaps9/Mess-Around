@@ -1,0 +1,8 @@
+#Write some code using modulo + condition to check if number written by user is odd or even
+print("Hello Earthling, I hope you're doing well :) ")
+user_number = int(input("Choose a number please: "))
+
+if user_number % 2 == 0:
+    print(f"{user_number} is an even number!")
+else:
+    print(f"{user_number} is an odd number!")
