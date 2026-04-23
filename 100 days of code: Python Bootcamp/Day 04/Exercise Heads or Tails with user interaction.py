@@ -7,14 +7,17 @@ import random
 
 user_choice = input("Face your fate: Heads or Tails? ").lower()
 
-random_number_result = random.randint(1,2)
-heads = 1
-tails = 2
+coin_result = random.randint(1,2)
 
-if heads == random_number_result and user_choice == "heads":
-    print("Heads!\nYou win!")
-elif tails == random_number_result and user_choice == "tails":
-    print("Tails!\nYou win!")
+if coin_result == 1:
+    coin_result = "heads"
 else:
+    coin_result = "tails"
+
+if user_choice == coin_result:
+    print(coin_result)
+    print("You win!")
+else:
+    print(coin_result)
     print("You lose, sorry :/")
     
