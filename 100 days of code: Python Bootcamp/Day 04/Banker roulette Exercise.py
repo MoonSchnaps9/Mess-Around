@@ -8,5 +8,5 @@ friends = ["Alice", "Bob", "Charlie", "David", "Emanuel"]
 print(random.choice(friends))
 
 #Option 2
-random_selection = random.randint(1,4)
+random_selection = random.randint(0,4)
 print(friends[random_selection])
