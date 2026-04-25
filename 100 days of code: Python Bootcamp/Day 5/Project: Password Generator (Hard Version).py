@@ -28,3 +28,8 @@ for numbers3 in range(user_number_number):
 random.shuffle(password_result)
 Final_password = "".join(password_result)
 print("Your password is:" +" "+ Final_password)
+
+#Alternative version (without .join)
+# Final_password = ""
+# for character in password_result:
+#     Final_password += character
