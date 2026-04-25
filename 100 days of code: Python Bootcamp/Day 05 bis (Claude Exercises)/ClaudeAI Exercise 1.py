@@ -24,3 +24,8 @@ for line in range(number_of_badge_to_generate):
     id_employee = str(random.choice(id_numbers))
     print("Badge: " + first_name_employee + " | " + departments_employee + " | " + "ID: " + id_employee)
 
+print("---------------")
+
+#Added Claude suggestion
+for line in range(number_of_badge_to_generate):
+    print(f"Badge: {random.choice(first_names)} | {random.choice(departments)} | ID: {random.choice(id_numbers)}")
