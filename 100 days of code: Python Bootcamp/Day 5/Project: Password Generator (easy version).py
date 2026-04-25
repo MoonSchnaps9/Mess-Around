@@ -7,6 +7,7 @@ symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
 # 4 letters, 2 symbols, and 3 numbers then the password might look like this:
 #fgdx$*924
 #Each category is together. Go
+
 #Import random thingy
 import random
 
