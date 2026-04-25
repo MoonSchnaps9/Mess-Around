@@ -27,4 +27,3 @@ for numbers3 in range(user_number_number):
     number_results += random.choice(numbers)
 
 print("Your passsord is: "+letters_results+symbols_results+number_results)
-
