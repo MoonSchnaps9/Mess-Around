@@ -25,3 +25,10 @@ for result in range(number_of_dice_to_roll):
     total += roll_result
 
 print(f"Total: {total}")
+
+#We could also do
+
+# for result in range(1, number_of_dice_to_roll +1):
+#     roll_result = random.randint(1, number_of_side_dice_has)
+#     print(f"Roll {result}: {roll_result}")
+#     total += roll_result
