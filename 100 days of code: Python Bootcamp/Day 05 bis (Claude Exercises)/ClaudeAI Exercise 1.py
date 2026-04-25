@@ -19,7 +19,7 @@ departments_employee = ""
 id_employee = ""
 
 for line in range(number_of_badge_to_generate):
-    first_name_employee = random.choice(pythonfirst_names)
+    first_name_employee = random.choice(first_names)
     departments_employee = random.choice(departments)
     id_employee = str(random.choice(id_numbers))
     print("Badge: " + first_name_employee + " | " + departments_employee + " | " + "ID: " + id_employee)
