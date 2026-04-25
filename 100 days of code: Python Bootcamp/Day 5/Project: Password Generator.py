@@ -7,11 +7,24 @@ symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
 # 4 letters, 2 symbols, and 3 numbers then the password might look like this:
 #fgdx$*924
 #Each category is together. Go
+#Import random thingy
+import random
 
 print("Welcome to the PyPassword Generator!")
 user_number_letters = int(input("How many letters would you like in your password?\n"))
 user_number_symbols = int(input("how many symbols would you like?\n"))
 user_number_number = int(input("How many numbers would you like?\n"))
 
+letters_results = ""
+symbols_results = ""
+number_results = ""
 
+for letters1 in range(user_number_letters):
+    letters_results += random.choice(letters)
+for symbols2 in range(user_number_symbols):
+    symbols_results += random.choice(symbols)
+for numbers3 in range(user_number_number):
+    number_results += random.choice(numbers)
+
+print("Your passsord is: "+letters_results+symbols_results+number_results)
 
