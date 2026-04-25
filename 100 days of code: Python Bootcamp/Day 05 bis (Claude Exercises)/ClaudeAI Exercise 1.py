@@ -10,4 +10,3 @@ id_numbers = [101, 102, 103, 104, 105]
 # Asks the user how many badges to generate
 # For each badge, randomly picks one first name, one department, and one ID number
 # Prints each badge like this: Badge: Alice | Engineering | ID: 101
-
