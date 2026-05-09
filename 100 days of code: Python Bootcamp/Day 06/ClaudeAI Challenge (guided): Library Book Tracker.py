@@ -22,4 +22,20 @@ def show_books(books):
     for index, book in enumerate(books, 1):
         print(f"{index}. {book}")
 
-show_books(books)
+# show_books(books)
+
+# Now — Step 2: define borrow_book(books, title). 
+# It should remove a book from the list if it exists, and print a message if it doesn't. Think about what list method could remove an item by value.
+
+def borrow_books(books, title):
+    if title in books:
+        books.remove(title)
+        print(books)
+    else:
+        print("Either this book has been borrowed already, or does not exist")
+
+# Now Step 3: define return_book(books, title) — adds a book back to the list. Think about what list method adds an item.
+
+def return_book(books, title):
+    books.append(title)
+    print(books)
