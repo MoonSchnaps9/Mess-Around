@@ -11,3 +11,15 @@ def check_balance(balance):
     print(f"Account balance: {balance}")
 
 check_balance(1000)
+
+# Step 3: Define a function called deposit that takes two parameters — balance and amount. It should add amount to balance and return the new balance. 
+# Then call it and print the result.
+
+def deposit(balance, amount):
+    result = balance + amount
+    print(f"New balance {result}")
+    return result
+    
+
+deposit(1000, 20)
+
