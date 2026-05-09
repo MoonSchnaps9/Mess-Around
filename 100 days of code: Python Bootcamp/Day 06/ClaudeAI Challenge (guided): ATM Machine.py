@@ -23,3 +23,16 @@ def deposit(balance, amount):
 
 deposit(1000, 20)
 
+# Step 4: Now define a withdraw function. Same idea as deposit but it subtracts. 
+# Add one condition — if the amount is greater than the balance, print "Insufficient funds" instead of processing the withdrawal.
+
+def withdraw(balance, amount):
+    if amount > balance:
+        print("Insufficient funds")
+    else:
+        result = balance - amount
+        print(f"New balance {result}")
+        return result
+
+withdraw(1000, 500)
+
