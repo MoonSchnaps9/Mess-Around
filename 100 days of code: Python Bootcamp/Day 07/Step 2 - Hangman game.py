@@ -1,7 +1,7 @@
 # "INSTRUCTIONS of Step 2"
 
 #Part 1
-# Create an empty string called Placeholder
+# Create an empty string called placeholder
 # For each letter in the chosen_world, add a _ to placeholder
 # So if the chosen work is "apple", it should be _ _ _ _ _ with 5 "_" representing each letter to guess 
 # Print out hint
@@ -14,6 +14,7 @@
 # Print display and you should see the guessed letter in the correct position
 # but every letter that is not a match is represented by "_"
 
+#------------------------------------------------------------------------------------------------------------------------------------------------
 
 import random
 
@@ -23,11 +24,26 @@ chosen_word = random.choice(word_list)
 
 print(chosen_word)
 
+placeholder = ""
+for letter in chosen_word:
+    placeholder += "_"+" "
+
+print(placeholder)
 
 guess = input("Guess a letter:\n").lower()
 
+display = ""
+
 for letter in chosen_word:
     if letter == guess:
-        print("Right")
+        display += letter+" "
     else:
-        print("Wrong")
+        display += "_"+" "
+
+print(display)
+
+
+#Teacher method for Part 1: 
+# word_length = len(chosen_word)
+# for position in range(word_length):
+#     placeholder += "_"
