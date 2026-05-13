@@ -2,8 +2,8 @@
 
 #Part 1
 # Use a while loop to let the user guess again
-#The loop should only stop once the user has guessed all the letters in the chosen_world
-#At that point Display has no more blanks (_). Then you can tell the user they've won
+# The loop should only stop once the user has guessed all the letters in the chosen_world
+# At that point Display has no more blanks (_). Then you can tell the user they've won
 
 #Part 2
 # Update the for loop that the previous guesses are added to the display string
@@ -25,14 +25,21 @@ for letter in chosen_word:
 
 print(placeholder)
 
-guess = input("Guess a letter:\n").lower()
+display = placeholder
+correct_guess = []
 
-display = ""
-
-for letter in chosen_word:
-    if letter == guess:
-        display += letter+" "
-    else:
-        display += "_"+" "
-
-print(display)
+while "_" in display:
+    new_display = ""
+    guess = input("Guess a letter:\n").lower()
+    for letter in chosen_word:
+        if letter == guess:
+                correct_guess.append(letter)
+                new_display += letter+" "
+        elif letter in correct_guess:
+                new_display += letter+" "
+        else:
+            new_display += "_"+" "
+    display = new_display
+    
+    print(display)
+print("You win!")
