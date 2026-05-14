@@ -1,0 +1,20 @@
+word_list = [
+    "andromeda", "asteroid", "atmosphere", "aurora", "axis",
+    "binary", "blackhole", "celestial", "comet", "constellation",
+    "cosmos", "crater", "debris", "eclipse", "equinox",
+    "exoplanet", "fusion", "galaxy", "graviton", "gravity",
+    "helium", "horizon", "hubble", "hydrogen", "impact",
+    "infrared", "interstellar", "ionosphere", "jupiter", "kepler",
+    "latitude", "launch", "longitude", "lunar", "magnetar",
+    "mars", "mercury", "meteor", "milkyway", "mission",
+    "module", "momentum", "moon", "nasa", "nebula",
+    "neptune", "neutron", "nitrogen", "nucleus", "observatory",
+    "orbit", "oxygen", "ozone", "parallax", "parsec",
+    "photon", "pioneer", "planet", "plasma", "pluto",
+    "pulsar", "quantum", "quasar", "radiation", "reactor",
+    "rocket", "satellite", "saturn", "solar", "solstice",
+    "spacecraft", "spectrum", "starlight", "stellar", "stratosphere",
+    "sunspot", "supernova", "telescope", "thermal", "titan",
+    "trajectory", "universe", "uranus", "vacuum", "velocity",
+    "venus", "vortex", "voyager", "wormhole", "zenith"
+]

@@ -19,6 +19,12 @@
 #Part 6
 #Update the code to tell users how many lives they have left
 
+#Extra - Beyond Angela's instructions - ClaudeAI
+#   (wrong guess tracking)
+# Create a variable called wrong_guess as an empty list
+# If the user guesses a letter that is not in the chosen_word AND not already in wrong_guess:
+# Deduct a life and add the letter to wrong_guess
+# If the letter IS already in wrong_guess, warn the user but do NOT deduct a life
 #------------------------------------------------------------------------------------------------------------------------------------------------
 import random
 
@@ -73,7 +79,7 @@ stages = ['''
       |
 =========''']
 
-word_list = ["earth", "jupiter", "andromeda", "nebula", "moon", "asteroid", "galaxy"]
+from hangman_words import word_list
 
 chosen_word = random.choice(word_list)
 
@@ -87,6 +93,7 @@ print(placeholder)
 
 display = placeholder
 correct_guess = []
+wrong_guess =[]
 lives = 6
 game_on = True
 
@@ -94,9 +101,18 @@ while game_on:
     new_display = ""
     guess = input("Guess a letter:\n").lower()
 
-    if  guess not in chosen_word:
-        lives -= 1
-        print(f"Wrong, you've lost 1 life. Remaining: {lives}")
+    if guess in wrong_guess:
+         print(f"Be careful, you have already tried '{guess}', and this is wrong!")
+
+    if guess not in chosen_word:
+        if guess not in wrong_guess:
+            lives -= 1
+            wrong_guess.append(guess)
+            print(f" '{guess}' is not in the word, sorry :(")
+            print(f"Wrong, you've lost 1 life. Remaining: {lives}")
+
+    if guess in correct_guess:
+         print(f"Well, you have already guessed '{guess}!\nTry another one! :)")
 
     for letter in chosen_word:
         if letter == guess:
