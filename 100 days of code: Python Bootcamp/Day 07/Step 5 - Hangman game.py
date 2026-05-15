@@ -27,63 +27,13 @@
 # If the letter IS already in wrong_guess, warn the user but do NOT deduct a life
 #------------------------------------------------------------------------------------------------------------------------------------------------
 import random
-
-stages = ['''
-  +---+
-  |   |
-  O   |
- /|\  |
- / \  |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
- /    |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
- /|   |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
-  |   |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
-      |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-      |
-      |
-      |
-      |
-=========''']
-
 from hangman_words import word_list
+from hangman_art import stages
+from hangman_art import logo
 
 chosen_word = random.choice(word_list)
 
-print(chosen_word)
+print(logo)
 
 placeholder = ""
 for letter in chosen_word:
@@ -129,7 +79,9 @@ while game_on:
 
     if "_" not in display:
          print("Congrats, you won!")
+         print(f"It was {chosen_word}")
          game_on = False
     elif lives == 0:
          print("Sorry, you lost!")
+         print(f"It was {chosen_word}")
          game_on = False
