@@ -10,3 +10,11 @@ def greet():
 
 
 greet()
+
+#Function with inputs
+
+def greet_with_name(name):
+    print(f"Hi {name}")
+
+
+greet_with_name("Ryan")
