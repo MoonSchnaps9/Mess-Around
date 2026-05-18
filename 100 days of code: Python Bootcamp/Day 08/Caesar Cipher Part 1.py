@@ -16,3 +16,16 @@ shift = int(input("Type the shift number:\n"))
 # Use index() to find the position of a letter in the alphabet list
 # e.g. plain_text = "hello", shift_amount = 1 → "ifmmp"
 # Output format: "Here is the encoded result: ifmmp"
+
+def encrypt(original_text=text, shift_amount=shift):
+    
+    encrypted_message = ""
+    
+    for letter in text:
+        position_in_alphabet_list = alphabet.index(letter)
+        position_in_alphabet_list_with_shift = position_in_alphabet_list + shift
+        final_position = position_in_alphabet_list_with_shift % 26
+        encrypted_message += alphabet[final_position]
+    print(f"Here is the encoded result: {encrypted_message}")
+
+encrypt()
