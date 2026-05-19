@@ -28,3 +28,14 @@ student_scores = {
 
 student_grades = {}
 
+for score in student_scores:
+    if student_scores[score] >= 91:
+        student_grades[score] = "Outstanding"
+    elif 81 <= student_scores[score] <= 90:
+        student_grades[score] = "Exceeds Expectations"
+    elif 71 <= student_scores[score] <= 80:
+        student_grades[score] = "Acceptable"
+    else:
+        student_grades[score] = "Fail"
+
+print(student_grades)
