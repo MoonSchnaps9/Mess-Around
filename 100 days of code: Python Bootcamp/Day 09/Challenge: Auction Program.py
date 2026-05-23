@@ -34,11 +34,10 @@ while game:
     bidder_name = input("What is your name?")
     bidder_bid_amount = int(input("what is your bid?: €"))
     list_of_bidders[bidder_name] = bidder_bid_amount
-    print(list_of_bidders)
     other_bidders_question = input("Are there other bidders? Type 'Yes' or 'No'\n").lower()
     if other_bidders_question == "yes":
         system("clear")
-    if other_bidders_question == "no":
+    elif other_bidders_question == "no":
         for bid in list_of_bidders:
             if list_of_bidders[bid] > highest_bid:
                 highest_bid = list_of_bidders[bid]
