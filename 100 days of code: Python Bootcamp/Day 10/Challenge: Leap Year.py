@@ -22,3 +22,19 @@
 # is_leap_year(2400)
 # is_leap_year(1989)
 
+def is_leap_year(year):
+    if year % 4 == 0:
+        if year % 100 != 0:
+            result = True
+            return result
+        elif year % 400 == 0:
+            result = True
+            return result
+        elif year % 400 != 0:
+            result = False
+            return result
+    else:
+        result = False
+        return result
+
+print(is_leap_year(int(input("Year?"))))
