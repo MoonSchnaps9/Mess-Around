@@ -51,12 +51,12 @@ print(maths_operation["*"](4, 8))
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
-
-game = True
-
-while game:
 #ask user to choose the first number
-    user_first_number = int(input("What's your first galactic number?: "))
+user_first_number = int(input("What's your first galactic number?: "))
+
+#Creating While loop
+game = True
+while game:
 
 #Display the list of operators
     for operator in maths_operation:
@@ -79,31 +79,8 @@ while game:
     if user_choice_continue_previous_number == "n":
         result = 0
         system("clear")
+        #ask user to choose the first number
+        user_first_number = int(input("What's your first galactic number?: "))
+        
     elif user_choice_continue_previous_number == "y":
-        #Creating another while loop so the user can still work with his previous number until he's done so it goes back to the previous loop
-        game2 = True
-        while game2:
-            
-            user_first_number = result
-            
-            #Display the list of operators
-            for operator in maths_operation:
-                print(operator)
-
-            #aks user to choose the mathematical operator
-            user_operation_choice = input("Pick an operation: ")
-            
-            #ask the user to choose the second number
-            user_second_number = int(input("What's your second galactic number?: "))
-            
-            #Calculation
-            result = maths_operation[user_operation_choice](user_first_number, user_second_number)
-            print(f"{user_first_number} {user_operation_choice} {user_second_number} = {result}")
-            
-            #ask user to choice if they want to continue working with the previous result
-            user_choice_continue_previous_number = input(f"Type 'y' to continue calculating with {result}, or type 'n' to start a new calculation: ").lower()
-
-            #If Statement + While loop
-            if  user_choice_continue_previous_number == "n":
-                result = 0
-                game2 = False
+        user_first_number = result
