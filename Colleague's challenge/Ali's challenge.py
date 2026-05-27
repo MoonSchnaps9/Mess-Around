@@ -5,9 +5,15 @@
 # *******
 # *********
 
-final_list = []
-original_star = "*"
+print("*")
 
-for stars in range(9):
+final_list = ["*"]
+
+for stars in range(2):
     final_list.append("*")
-    print(final_list)
+    final_list.append("*")
+    print(*final_list)
+    for space in range(2):
+        final_list[space] = " "
+
+print(final_list)
