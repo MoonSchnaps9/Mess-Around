@@ -41,13 +41,28 @@ star_list = [" ", "*", " "]
 # print(*star_list)
 # star_list[len(star_list) - 1] = "B"
 # print(*star_list)
-print(*star_list)
+# print(star_list)
+# for star in range(2):
+#     star_list.insert(0, " ")
+#     star_list.append(" ")
+#     for space in range(2):
+#         star_list[space + 1] = "*"
+#         star_list[len(star_list) - 1] = "*"
+#         print(star_list)
+
+#---------------------
+
+star_list_start_point = [" ", "*", " "]
+star_list_ongoing_change = ["*"]
+
+# print(star_list_start_point)
+
 for star in range(1):
-    star_list.insert(0, " ")
-    star_list.append(" ")
-    print(star_list)
-    # for space in range(1):
-    #     star_list[space + 1] = "*"
-    #     star_list[len(star_list) - 1] = "*"
-    #     print(*star_list)
+    star_list_ongoing_change.insert(0, " ")
+    star_list_ongoing_change.append(" ")
+    print(star_list_ongoing_change)
+    for first_space in range(1):
+        star_list_ongoing_change[first_space] = "*"
+        star_list_ongoing_change[len(star_list_ongoing_change) - 1] = "*"
+        print(star_list_ongoing_change)
 
