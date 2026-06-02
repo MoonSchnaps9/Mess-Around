@@ -101,11 +101,16 @@ if player_choice_start_game == "ofc":
     while first_loop:
         print(logo)
 
+        player_cards = []
+        computer_cards = []
+
+        total_count_player = 0
+        total_count_computer = 0
+
         first_player_draw(player_cards)
         first_computer_card(computer_cards)
         total_count_player = player_total_count(total_count_player, player_cards)
         total_count_computer = computer_total_count(total_count_computer, computer_cards)
-
         player_above_21 = player_above_21_check(total_count_player, player_above_21)
 
 
@@ -115,7 +120,7 @@ if player_choice_start_game == "ofc":
             if try_again_player == "Y":
                   system("clear")
             elif try_again_player == "I AM SAD":
-                game = False
+                first_loop = False
         
         elif player_above_21 == False:
             print(f"Your celestial cards are {player_cards[0]}, {player_cards[1]}. Your current score is {total_count_player}")
@@ -127,6 +132,8 @@ if player_choice_start_game == "ofc":
                 second_loop = True
                 while second_loop:
                     player_pick_another_card(player_cards)
+                    total_count_player = 0
+                    total_count_player = player_total_count(total_count_player, player_cards)
                     player_above_21 = player_above_21_check(total_count_player, player_above_21)
                     
                     if  player_above_21 == True:
@@ -136,10 +143,10 @@ if player_choice_start_game == "ofc":
                         
                         if try_again_player == "Y":
                             system("clear")
-                            second_loop == False
+                            second_loop = False
                         elif try_again_player == "I AM SAD":
-                            second_loop == False
-                            game = False
+                            second_loop = False
+                            first_loop = False
                     
                     elif player_above_21 == False:
                         print(f"Your celestial cards are {player_cards[0]}, {player_cards[1]}. Your current score is {total_count_player}")
@@ -159,18 +166,18 @@ if player_choice_start_game == "ofc":
                                     total_count_computer = computer_total_count(total_count_computer, computer_cards)
 
                                     if total_count_computer > 17:
-                                        computer_above_21_check(total_count_computer, computer_above_21)
-                                        winner_decision(total_count_computer, computer_above_21, total_count_player, player_above_21, player_cards, computer_cards)
+                                        computer_above_21 = computer_above_21_check(total_count_computer, computer_above_21)
+                                        print(winner_decision(total_count_computer, computer_above_21, total_count_player, player_above_21, player_cards, computer_cards))
                                         try_again_player = input("Would you like to do another game? 'Y' for yes and 'I AM SAD' for no\n").upper()
                             
                                         if try_again_player == "Y":
                                             until_17_loop = False
-                                            second_loop == False
+                                            second_loop = False
                                             system("clear")
                                         elif try_again_player == "I AM SAD":
                                             until_17_loop = False
-                                            second_loop == False
-                                            game = False
+                                            second_loop = False
+                                            first_loop = False
 
             elif player_first_choice_game == 'P':
                 until_17_loop = True
@@ -179,7 +186,7 @@ if player_choice_start_game == "ofc":
                     total_count_computer = computer_total_count(total_count_computer, computer_cards)
 
                     if total_count_computer > 17:
-                        computer_above_21_check(total_count_computer, computer_above_21)
+                        computer_above_21 = computer_above_21_check(total_count_computer, computer_above_21)
                         print(winner_decision(total_count_computer, computer_above_21, total_count_player, player_above_21, player_cards, computer_cards))
                         try_again_player = input("Would you like to do another game? 'Y' for yes and 'I AM SAD' for no\n").upper()
                             
@@ -188,7 +195,7 @@ if player_choice_start_game == "ofc":
                             system("clear")
                         elif try_again_player == "I AM SAD":
                             until_17_loop = False
-                            game = False
+                            first_loop = False
 
 
             
