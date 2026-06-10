@@ -19,3 +19,20 @@
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+num = int(input("What is your number?\n"))
+number_match = []
+
+def is_prime(number_match, num):
+    def check_loop(num):
+        for number in range (num):
+            if num % (number + 1) == 0:
+                number_match.append(number + 1)
+    check_loop(num)
+    if len(number_match) > 2:
+        return False
+    elif len(number_match) == 2:
+        return True
+    elif len(number_match) <2:
+        return False
+
+print(is_prime(number_match, num))
