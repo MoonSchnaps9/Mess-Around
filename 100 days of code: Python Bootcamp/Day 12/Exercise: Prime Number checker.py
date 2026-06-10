@@ -19,10 +19,8 @@
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-num = int(input("What is your number?\n"))
-number_match = []
-
-def is_prime(number_match, num):
+def is_prime(num):
+    number_match = []
     def check_loop(num):
         for number in range (num):
             if num % (number + 1) == 0:
@@ -35,4 +33,4 @@ def is_prime(number_match, num):
     elif len(number_match) <2:
         return False
 
-print(is_prime(number_match, num))
+print(is_prime(int(input("What is your number?\n"))))
