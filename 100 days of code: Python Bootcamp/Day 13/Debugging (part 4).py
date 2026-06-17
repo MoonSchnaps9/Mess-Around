@@ -4,8 +4,10 @@
 # You can copy and paste the code into PyCharm to help you debug.   
 
 def odd_or_even(number):
-    if number % 2 = 0:
+    if number % 2 == 0:
         return "This is an even number."
     else:
         return "This is an odd number."
+    
+print(odd_or_even(4))
     
