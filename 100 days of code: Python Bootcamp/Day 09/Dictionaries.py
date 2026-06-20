@@ -24,3 +24,5 @@ print(programming_dictionary)
 #loop through a dictionary
 for key in programming_dictionary:
     print(programming_dictionary[key])
+
+print(programming_dictionary[0])
