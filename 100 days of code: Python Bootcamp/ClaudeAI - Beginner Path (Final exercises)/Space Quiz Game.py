@@ -74,4 +74,7 @@ questions = [
     }
 ]
 
+from art import logo
 
+print(logo)
+print(questions[0]["Question"])
