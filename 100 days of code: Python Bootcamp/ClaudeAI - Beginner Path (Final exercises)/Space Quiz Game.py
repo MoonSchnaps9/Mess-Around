@@ -96,18 +96,20 @@ def convert_user_choice(user_choice, questions, number):
     user_choice = questions[number]["Options"][temporary_v_uchoice]
     return user_choice
 
-def check_user_answer(question, number, user_answer, user_score):
-    if user_answer == question[number]["Answer"]:
-        print("I am not working for NASA.. but I know that your answer is CELESTIAL!")
+def check_user_answer(question, number, user_choice, user_score):
+    if user_choice == question[number]["Answer"]:
         user_score += 1
+        print(F"I am not working for NASA.. but I know that your answer is CELESTIAL!\n Your current score: {user_score}")
         return user_score
     else:
-        print("I am sad to announce that this is not the correct answer.. You don't believe me? NASA it geez 🧐")
+        print(F"I am sad to announce that this is not the correct answer.. You don't believe me? NASA it geez 🧐\n Your current score: {user_score}")
+        return user_score
     
+user_score = 0
 
 for step in range(len(questions)):
     print(display_questions(questions, step))
     display_options(questions, step)
-    user_choice = input("You have to make a Celestial guess mate").upper()
+    user_choice = input("You have to make a Celestial guess mate\n").upper()
     user_choice = convert_user_choice(user_choice, questions, step)
-    print(user_choice)
+    user_score = check_user_answer(questions, step, user_choice, user_score)
