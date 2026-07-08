@@ -19,6 +19,7 @@
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------
 from art import logo
+from os import system
 
 questions = [
     {
@@ -96,20 +97,43 @@ def convert_user_choice(user_choice, questions, number):
     user_choice = questions[number]["Options"][temporary_v_uchoice]
     return user_choice
 
-def check_user_answer(question, number, user_choice, user_score):
-    if user_choice == question[number]["Answer"]:
+def check_user_answer(questions, number, user_choice, user_score):
+    if user_choice == questions[number]["Answer"]:
         user_score += 1
-        print(F"I am not working for NASA.. but I know that your answer is CELESTIAL!\n Your current score: {user_score}")
+        print(F"I am not working for NASA.. but I know that your answer is CELESTIAL!"
+              F"\n Your current score: {user_score}")
         return user_score
     else:
-        print(F"I am sad to announce that this is not the correct answer.. You don't believe me? NASA it geez 🧐\n Your current score: {user_score}")
+        print("I am sad to announce that this is not the correct answer.. You don't believe me? NASA it geez 🧐"
+              F"\nIt would tell you that the correct answer was {questions[number]['Answer']}"
+              F"\nYour current score: {user_score}")
         return user_score
     
+def judge_user_perf(user_score):
+    if user_score <= 3:
+        print("You know, sometimes just open the house windows.. you see some clouds, stars.. you know, get to know WHERE YOU BREATHE GEEZ 🙄"
+              F"\nYour final score is: {user_score}")
+    elif 3 < user_score <= 6:
+        print("I like you! You have opened your house windows sometimes to check where you live.. and maybe a book or two to ensure you're human. Very clever! 😄"
+              F"\nYour final score is: {user_score}")
+    elif 6 < user_score <=9:
+        print("I would almost want you to give me your phone number, so we can go to a restaurant, and talk about why 'Rise' is more than a plush for kids 🥲"
+              F"\nYour final score is: {user_score}")
+    elif user_score == 10:
+        print("I bow before you. You have exceeded all expectations. You have declared yourself supreme leader of the space exploration, and I should eternally follow your path 🌌"
+              F"\nYour final score is: {user_score}")
+
+print(logo) 
 user_score = 0
 
 for step in range(len(questions)):
     print(display_questions(questions, step))
     display_options(questions, step)
-    user_choice = input("You have to make a Celestial guess mate\n").upper()
+    user_choice = input("You have to make a Celestial guess mate."
+                        "\nGood luck 😳: ").upper()
     user_choice = convert_user_choice(user_choice, questions, step)
     user_score = check_user_answer(questions, step, user_choice, user_score)
+
+system("clear")
+
+judge_user_perf(user_score)
