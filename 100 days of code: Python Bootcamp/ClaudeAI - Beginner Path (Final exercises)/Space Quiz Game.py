@@ -18,6 +18,7 @@
 #   - Score tracked with a variable updated inside a function
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------
+from art import logo
 
 questions = [
     {
@@ -70,11 +71,43 @@ questions = [
     {
         "Question": "In astrophysics, what exactly is a pulsar?",
         "Options": ["A highly magnetized, rotating neutron star", "A dying red giant star", "A black hole emitting jets of gas", "A comet passing dangerously close to the Sun"],
-        "Answer": "Saturn" 
+        "Answer": "A highly magnetized, rotating neutron star"
     }
 ]
 
-from art import logo
+# print(logo)
+# print(questions[0]["Question"])
 
-print(logo)
-print(questions[0]["Question"])
+# for question in range(len(questions)):
+#     print(questions[question]["Question"])
+
+def display_questions(questions, number):
+    question = questions[number]["Question"]
+    return question
+
+def display_options(questions, number):
+    labels = ["A", "B", "C", "D"]
+    for index, option in enumerate(questions[number]["Options"]):
+        print(f"{labels[index]}. {option}")
+
+def convert_user_choice(user_choice, questions, number):
+    labels = ["A", "B", "C", "D"]
+    temporary_v_uchoice = labels.index(user_choice)
+    user_choice = questions[number]["Options"][temporary_v_uchoice]
+    return user_choice
+
+def check_user_answer(question, number, user_answer, user_score):
+    if user_answer == question[number]["Answer"]:
+        print("I am not working for NASA.. but I know that your answer is CELESTIAL!")
+        user_score += 1
+        return user_score
+    else:
+        print("I am sad to announce that this is not the correct answer.. You don't believe me? NASA it geez 🧐")
+    
+
+for step in range(len(questions)):
+    print(display_questions(questions, step))
+    display_options(questions, step)
+    user_choice = input("You have to make a Celestial guess mate").upper()
+    user_choice = convert_user_choice(user_choice, questions, step)
+    print(user_choice)
