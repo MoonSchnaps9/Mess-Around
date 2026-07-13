@@ -58,6 +58,11 @@ def assign_mission(astronauts, display_astronaut_fx):
         if astronaut['name'] == human_for_mission:
             astronaut['mission'] = which_mission
             astronaut['status'] = "unavailable"
+        else:
+            error = True
+    if error == True:
+        print("This human does not seem to be in our database.. 🙃\n"
+            "No worries, just make sure you did not make a typo, or register them first and come back here 🥰")
     display_astronaut_fx(astronauts)
     return astronauts
 
@@ -68,6 +73,11 @@ def return_mission(astronauts, display_astronaut_fx):
         if astronaut['name'] == human_returning:
             astronaut['mission'] = "unassigned"
             astronaut['status'] = "available"
+        else:
+            error = True
+    if error == True:
+        print("This human does not seem to be in our database.. 🙃\n"
+            "No worries, just make sure you did not make a typo, or register them first and come back here 🥰")
     display_astronaut_fx(astronauts)
     return astronauts
 
@@ -76,9 +86,39 @@ def remove_astronaut(astronauts, display_astronaut_fx):
     for astronaut in astronauts:
         if astronaut['name'] == remove_human:
             astronauts.remove(astronaut)
+        else:
+            error = True
+    if error == True:
+        print("This human does not seem to be in our database.. 🙃\n"
+            "No worries, just make sure you did not make a typo, or register them first and come back here 🥰")
     display_astronaut_fx(astronauts)
     return astronauts
 
 
+print("Welcome to the mighty Space Terminal"
+    "\nWhere the stars remain patient, as the clouds bother them 🤔")
 
+space_terminal = True
+while space_terminal:
+    user_choice = int(input("\nHow can I can help? (type the number according to your action)"
 
+    "\n1. List all astronauts and their status"
+    "\n2. Add a new astronaut"
+    "\n3. Assign an astronaut to a mission"
+    "\n4. Return an astronaut from a mission"
+    "\n5. Remove an astronaut from the roster"
+    "\n6. Exit"
+    "\nNumber: "))
+
+    if user_choice == 1:
+        display_astronautname_status(astronauts)
+    elif user_choice == 2:
+        astronauts = add_astronaut(astronauts, display_astronautname_status)
+    elif user_choice == 3:
+        astronauts = assign_mission(astronauts, display_astronautname_status)
+    elif user_choice == 4:
+        astronauts = return_mission(astronauts, display_astronautname_status)
+    elif user_choice == 5:
+        astronauts = remove_astronaut(astronauts, display_astronautname_status)
+    if user_choice == 6:
+        space_terminal = False
