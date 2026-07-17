@@ -54,28 +54,29 @@ def add_astronaut(astronauts, display_astronaut_fx):
 def assign_mission(astronauts, display_astronaut_fx):
     human_for_mission = input("Oh wow, Ok, who should go on mission?\n").upper()
     which_mission = input("Amaze, amaze! ⭐️ And what is the name of the mission?\n").lower()
+    found = False
     for astronaut in astronauts:
         if astronaut['name'] == human_for_mission:
             astronaut['mission'] = which_mission
             astronaut['status'] = "unavailable"
-        else:
-            error = True
-    if error == True:
+            found = True
+    if not found:
         print("This human does not seem to be in our database.. 🙃\n"
-            "No worries, just make sure you did not make a typo, or register them first and come back here 🥰")
+              "No worries, just make sure you did not make a typo, or register them first and come back here 🥰")
     display_astronaut_fx(astronauts)
     return astronauts
 
 def return_mission(astronauts, display_astronaut_fx):
     human_returning = input("GEEZ, that's nice! 😄\n"
                             "Who has returned from mission?").upper()
+    found = False
     for astronaut in astronauts:
         if astronaut['name'] == human_returning:
             astronaut['mission'] = "unassigned"
             astronaut['status'] = "available"
-        else:
-            error = True
-    if error == True:
+            found = True
+
+    if not found:
         print("This human does not seem to be in our database.. 🙃\n"
             "No worries, just make sure you did not make a typo, or register them first and come back here 🥰")
     display_astronaut_fx(astronauts)
@@ -83,12 +84,12 @@ def return_mission(astronauts, display_astronaut_fx):
 
 def remove_astronaut(astronauts, display_astronaut_fx):
     remove_human = input("Oh no!😢 Who is leaving us?\n").upper()
+    found = False
     for astronaut in astronauts:
         if astronaut['name'] == remove_human:
             astronauts.remove(astronaut)
-        else:
-            error = True
-    if error == True:
+            found = True
+    if not found:
         print("This human does not seem to be in our database.. 🙃\n"
             "No worries, just make sure you did not make a typo, or register them first and come back here 🥰")
     display_astronaut_fx(astronauts)
@@ -120,5 +121,5 @@ while space_terminal:
         astronauts = return_mission(astronauts, display_astronautname_status)
     elif user_choice == 5:
         astronauts = remove_astronaut(astronauts, display_astronautname_status)
-    if user_choice == 6:
+    elif user_choice == 6:
         space_terminal = False
