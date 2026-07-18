@@ -27,16 +27,13 @@
 
 #--------------------------------------------------------------------------------------------------
 
-
 #Import the tools
 import random
-
-
 
 #Ressouces
 wallet = 200
 
-planets_prices = [
+planet_prices = [
 
     {"planet": "Jupiter",
      "resources": ["fuel cells", "minerals", "tech parts", "food"],
@@ -71,3 +68,10 @@ cargo_hold = {
     "tech parts": 0,
     "food": 0
 }
+
+
+for step in planet_prices:
+    step['buy price'][0] += 15
+    print(step['buy price'][0])
+
+print(planet_prices)
