@@ -28,3 +28,49 @@
 #--------------------------------------------------------------------------------------------------
 
 
+#Import the tools
+import random
+
+
+
+#Ressouces
+wallet = 200
+
+planets_prices = [
+
+    {"planet": "Jupiter",
+     "resources": ["fuel cells", "minerals", "tech parts", "food"],
+     "buy price": [0, 0, 0, 0, 0],
+     "sell price": [0, 0, 0, 0, 0]},
+
+    {"planet": "Saturn",
+     "resources": ["fuel cells", "minerals", "tech parts", "food"],
+     "buy price": [0, 0, 0, 0, 0],
+     "sell price": [0, 0, 0, 0, 0]},
+
+    {"planet": "Neptune",
+     "resources": ["fuel cells", "minerals", "tech parts", "food"],
+     "buy price": [0, 0, 0, 0, 0],
+     "sell price": [0, 0, 0, 0, 0]},
+
+    {"planet": "Mars",
+     "resources": ["fuel cells", "minerals", "tech parts", "food"],
+     "buy price": [0, 0, 0, 0, 0],
+     "sell price": [0, 0, 0, 0, 0]},
+
+
+    {"planet": "Earth",
+     "resources": ["fuel cells", "minerals", "tech parts", "food"],
+     "buy price": [0, 0, 0, 0, 0],
+     "sell price": [0, 0, 0, 0, 0]},
+]
+
+cargo_hold = {
+    "fuel cells": 0,
+    "minerals": 0,
+    "tech parts": 0,
+    "food": 0
+}
+
+
+
