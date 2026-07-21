@@ -36,28 +36,28 @@ wallet = 200
 planet_prices = [
 
     {"planet": "Jupiter",
-     "resources": ["fuel cells", "minerals", "tech parts", "food"],
-     "buy price": [0, 0, 0, 0, 0],
+     "resources": ["fuel cells", "minerals", "water", "tech parts", "food"],
+     "buy price": [1, 5, 3, 4, 2],
      "sell price": [0, 0, 0, 0, 0]},
 
     {"planet": "Saturn",
-     "resources": ["fuel cells", "minerals", "tech parts", "food"],
+     "resources": ["fuel cells", "minerals", "water", "tech parts", "food"],
      "buy price": [0, 0, 0, 0, 0],
      "sell price": [0, 0, 0, 0, 0]},
 
     {"planet": "Neptune",
-     "resources": ["fuel cells", "minerals", "tech parts", "food"],
+     "resources": ["fuel cells", "minerals", "water", "tech parts", "food"],
      "buy price": [0, 0, 0, 0, 0],
      "sell price": [0, 0, 0, 0, 0]},
 
     {"planet": "Mars",
-     "resources": ["fuel cells", "minerals", "tech parts", "food"],
+     "resources": ["fuel cells", "minerals", "water", "tech parts", "food"],
      "buy price": [0, 0, 0, 0, 0],
      "sell price": [0, 0, 0, 0, 0]},
 
 
     {"planet": "Earth",
-     "resources": ["fuel cells", "minerals", "tech parts", "food"],
+     "resources": ["fuel cells", "minerals", "water", "tech parts", "food"],
      "buy price": [0, 0, 0, 0, 0],
      "sell price": [0, 0, 0, 0, 0]},
 ]
@@ -69,9 +69,30 @@ cargo_hold = {
     "food": 0
 }
 
+# def wallet_status(wallet):
+#     print(F"You currently have {wallet} credits")
 
-for step in planet_prices:
-    step['buy price'][0] += 15
-    print(step['buy price'][0])
+# def cargo_hold_status(cargo_hold):
+#     print("In your cargo hold, you currently have:")
+#     for key in cargo_hold:
+#         print(F"{key}: {cargo_hold[key]}")
 
-print(planet_prices)
+
+# def start_randomize_prices(planet_prices):
+#     """Function that is used at the beginning to randomize all prices"""
+#     for index in range(len(planet_prices)):
+#         for buy_price in range(0, len(planet_prices[index]['buy price'])):
+#             planet_prices[index]['buy price'][buy_price] = random.randint(250, 600)
+#         for sell_price in range(0, len(planet_prices[index]['sell price'])):
+#             planet_prices[index]['sell price'][sell_price] = random.randint(150, 500)
+#     return planet_prices
+
+# cargo_hold_status(cargo_hold)
+# wallet_status(wallet)
+
+current_planet = random.choice(planet_prices)
+
+print(current_planet)
+
+for index in range(0, len(current_planet['resources'])):
+    print(F"The {current_planet['resources'][index]} is at {current_planet['buy price'][index]}")
