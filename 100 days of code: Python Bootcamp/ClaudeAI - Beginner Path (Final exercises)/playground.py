@@ -38,7 +38,7 @@ planet_prices = [
     {"planet": "Jupiter",
      "resources": ["fuel cells", "minerals", "water", "tech parts", "food"],
      "buy price": [1, 5, 3, 4, 2],
-     "sell price": [0, 0, 0, 0, 0]},
+     "sell price": [23, 34, 45, 43, 34]},
 
     {"planet": "Saturn",
      "resources": ["fuel cells", "minerals", "water", "tech parts", "food"],
@@ -63,16 +63,18 @@ planet_prices = [
 ]
 
 cargo_hold = {
-    "fuel cells": 0,
-    "minerals": 0,
-    "tech parts": 0,
-    "food": 0
+    "fuel cells": 5,
+    "minerals": 4,
+    "tech parts": 3,
+    "food": 4
 }
 
 # def wallet_status(wallet):
+#     """Function that is used to display the current wallet of the user"""
 #     print(F"You currently have {wallet} credits")
 
 # def cargo_hold_status(cargo_hold):
+#     """Function that is used to display the current status of the user's cargo hold"""
 #     print("In your cargo hold, you currently have:")
 #     for key in cargo_hold:
 #         print(F"{key}: {cargo_hold[key]}")
@@ -90,9 +92,21 @@ cargo_hold = {
 # cargo_hold_status(cargo_hold)
 # wallet_status(wallet)
 
+# current_prices = start_randomize_prices(planet_prices)
 current_planet = random.choice(planet_prices)
 
-print(current_planet)
+def current_planet_status(current_planet):
+    """Function that is sued to display the different resource price |
+    it works with current_planet = random.choice(planet_prices)"""
+    print(F"\nWelcome to {current_planet['planet']}!"
+        "\nThe current buy price:\n")
+    for index in range(0, len(current_planet['resources'])):
+        print(F"The {current_planet['resources'][index]} is at {current_planet['buy price'][index]}")
+    print("\nThe current sell price:\n")
+    for index in range(0, len(current_planet['resources'])):
+        print(F"The {current_planet['resources'][index]} is at {current_planet['sell price'][index]}")
 
-for index in range(0, len(current_planet['resources'])):
-    print(F"The {current_planet['resources'][index]} is at {current_planet['buy price'][index]}")
+
+current_planet_status(current_planet)
+
+for match in 
