@@ -36,36 +36,37 @@ wallet = 200
 planet_prices = [
 
     {"planet": "Jupiter",
-     "resources": ["fuel cells", "minerals", "water", "tech parts", "food"],
+     "resources": ["fuel cell", "mineral", "water", "tech part", "food"],
      "buy price": [1, 5, 3, 4, 2],
      "sell price": [23, 34, 45, 43, 34]},
 
     {"planet": "Saturn",
-     "resources": ["fuel cells", "minerals", "water", "tech parts", "food"],
+     "resources": ["fuel cell", "mineral", "water", "tech part", "food"],
      "buy price": [0, 0, 0, 0, 0],
      "sell price": [0, 0, 0, 0, 0]},
 
     {"planet": "Neptune",
-     "resources": ["fuel cells", "minerals", "water", "tech parts", "food"],
+     "resources": ["fuel cell", "mineral", "water", "tech part", "food"],
      "buy price": [0, 0, 0, 0, 0],
      "sell price": [0, 0, 0, 0, 0]},
 
     {"planet": "Mars",
-     "resources": ["fuel cells", "minerals", "water", "tech parts", "food"],
+     "resources": ["fuel cell", "mineral", "water", "tech part", "food"],
      "buy price": [0, 0, 0, 0, 0],
      "sell price": [0, 0, 0, 0, 0]},
 
 
     {"planet": "Earth",
-     "resources": ["fuel cells", "minerals", "water", "tech parts", "food"],
+     "resources": ["fuel cell", "mineral", "water", "tech part", "food"],
      "buy price": [0, 0, 0, 0, 0],
      "sell price": [0, 0, 0, 0, 0]},
 ]
 
 cargo_hold = {
-    "fuel cells": 5,
-    "minerals": 4,
-    "tech parts": 3,
+    "fuel cell": 5,
+    "mineral": 4,
+    "water": 0,
+    "tech part": 3,
     "food": 4
 }
 
@@ -89,14 +90,12 @@ cargo_hold = {
 #             planet_prices[index]['sell price'][sell_price] = random.randint(150, 500)
 #     return planet_prices
 
-# cargo_hold_status(cargo_hold)
-# wallet_status(wallet)
 
-# current_prices = start_randomize_prices(planet_prices)
 current_planet = random.choice(planet_prices)
 
+print(current_planet)
 def current_planet_status(current_planet):
-    """Function that is sued to display the different resource price |
+    """Function that is used to display the different resource price |
     it works with current_planet = random.choice(planet_prices)"""
     print(F"\nWelcome to {current_planet['planet']}!"
         "\nThe current buy price:\n")
@@ -109,4 +108,30 @@ def current_planet_status(current_planet):
 
 current_planet_status(current_planet)
 
-for match in 
+def potential_planet_gain(cargo_hold, current_planet):
+    """Function that is used to compare the cargo_hold with current_planet prices |
+    if there is a match, the price of 1 cell will show up as a potentail gain"""
+    for index, merch in enumerate(cargo_hold):
+        if cargo_hold[merch] != 0:
+            potential_gain = current_planet['buy price'][index]
+            print(f"You could sell 1 {merch} for a total gain of {potential_gain}")
+
+
+user_choice = "E"
+
+def translate_buy_option(user_choice):
+    """Function that is used to translate the user choice from 'A' to 'E' to the actual resource"""
+    temporary_dict = {
+    "fuel cell": "A",
+    "mineral": "B",
+    "water": "C",
+    "tech part": "D",
+    "food": "E"
+    }
+    for key in temporary_dict:
+        if user_choice == temporary_dict[key]:
+            user_choice = key
+    print(user_choice)
+
+
+translate_buy_option(user_choice)
