@@ -33,7 +33,7 @@ import random
 #Ressouces
 wallet = 200
 
-planets_prices = [
+planet_prices = [
 
     {"planet": "Jupiter",
      "resources": ["fuel cells", "minerals", "tech parts", "food"],
@@ -69,7 +69,119 @@ cargo_hold = {
     "food": 0
 }
 
+def wallet_status(wallet):
+    """Function that is used to display the current wallet of the user"""
+    print(F"You currently have {wallet} credits")
 
+def cargo_hold_status(cargo_hold):
+    """Function that is used to display the current status of the user's cargo hold"""
+    print("In your cargo hold, you currently have:")
+    for key in cargo_hold:
+        print(F"{key}: {cargo_hold[key]}")
+
+
+def start_randomize_prices(planet_prices):
+    """Function that is used at the beginning to randomize all prices"""
+    for index in range(len(planet_prices)):
+        for buy_price in range(0, len(planet_prices[index]['buy price'])):
+            planet_prices[index]['buy price'][buy_price] = random.randint(250, 600)
+        for sell_price in range(0, len(planet_prices[index]['sell price'])):
+            planet_prices[index]['sell price'][sell_price] = random.randint(150, 500)
+    return planet_prices
+
+
+def price_fluctuation_travel(planet_prices):
+    """Function that is used when the user decides to travel | Price fluctuation"""
+    for index in range(len(planet_prices)):
+        for buy_price in range(0, len(planet_prices[index]['buy price'])):
+            planet_prices[index]['buy price'][buy_price] += random.randint(-50, 50)
+        for sell_price in range(0, len(planet_prices[index]['sell price'][buy_price])):
+            planet_prices[index]['sell price'][sell_price] += random.randint(-50, 50)
+    return planet_prices
+
+
+current_planet = random.choice(planet_prices)
+print(current_planet)
+
+
+def current_planet_status(current_planet):
+    """Function that is used to display the different resource price |
+    it works with current_planet = random.choice(planet_prices)"""
+    print(F"\nWelcome to {current_planet['planet']}!"
+        "\nThe current buy price:\n")
+    for index in range(0, len(current_planet['resources'])):
+        print(F"The {current_planet['resources'][index]} is at {current_planet['buy price'][index]}")
+    print("\nThe current sell price:\n")
+    for index in range(0, len(current_planet['resources'])):
+        print(F"The {current_planet['resources'][index]} is at {current_planet['sell price'][index]}")
+
+
+current_planet_status(current_planet)
+
+def potential_planet_gain(cargo_hold, current_planet):
+    """Function that is used to compare the cargo_hold with current_planet prices |
+    if there is a match, the price of 1 cell will show up as a potentail gain"""
+    for index, merch in enumerate(cargo_hold):
+        if cargo_hold[merch] != 0:
+            potential_gain = current_planet['buy price'][index]
+            print(f"You could sell 1 {merch} for a total gain of {potential_gain}")
+
+
+user_choice = 3
+
+def translate_user_option(user_choice):
+    """Function that is used to translate the user choice from 'A' to 'E' to the actual resource"""
+    temporary_dict = {
+    "fuel cell": 1,
+    "mineral": 2,
+    "water": 3,
+    "tech part": 4,
+    "food": 5
+    }
+    for key in temporary_dict:
+        if user_choice == temporary_dict[key]:
+            user_choice = key
+    return user_choice
+
+user_choice = translate_user_option(user_choice)
+
+
+def buy_operation(current_planet, cargo_hold, wallet, user_choice):
+    """Function that is used to when user wants to sell resources from cargo_hold"""
+    temp_value = current_planet['resources'].index(user_choice)
+
+    if cargo_hold[user_choice] == 0:
+        print("You can't do this!"
+              F"\nYou don't have enough {user_choice}!")
+        return cargo_hold, wallet
+    else:
+        wallet += current_planet['buy price'][temp_value]
+        cargo_hold[user_choice] -= 1
+        return cargo_hold, wallet
+
+def sell_operation(current_planet, cargo_hold, wallet, user_choice):
+    """Function that is used to when user wants to buy resources from planet"""
+    temp_value = current_planet['resources'].index(user_choice)
+
+    if current_planet['sell price'][temp_value] > wallet:
+        print("You can't do this!"
+              F"\nYou don't have enough money!")
+        return cargo_hold, wallet
+    else:
+            temp_value = current_planet['resources'].index(user_choice)
+            wallet -= current_planet['sell price'][temp_value]
+            cargo_hold[user_choice] += 1
+            return cargo_hold, wallet
+
+
+def travel_operation(current_planet, planet_prices, wallet):
+    """Function that is used when user wants to travel to another planet"""
+    wallet -= 20
+    temp_variable = current_planet
+    current_planet = random.choice(planet_prices)
+    while temp_variable == current_planet:
+        current_planet = random.choice(planet_prices)
+    return current_planet, wallet
 
 
 
