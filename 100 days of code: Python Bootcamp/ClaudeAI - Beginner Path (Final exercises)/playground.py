@@ -103,6 +103,45 @@ write_logo = """
    ✦ · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ✦
 """
 
+win_logo = """
+   ✦ · · · · · · · · · · · · · · · · · · · · · · · · · · ✦
+
+ ██╗   ██╗ ██████╗ ██╗   ██╗    ██╗    ██╗██╗███╗   ██╗
+ ╚██╗ ██╔╝██╔═══██╗██║   ██║    ██║    ██║██║████╗  ██║
+  ╚████╔╝ ██║   ██║██║   ██║    ██║ █╗ ██║██║██╔██╗ ██║
+   ╚██╔╝  ██║   ██║██║   ██║    ██║███╗██║██║██║╚██╗██║
+    ██║   ╚██████╔╝╚██████╔╝    ╚███╔███╔╝██║██║ ╚████║
+    ╚═╝    ╚═════╝  ╚═════╝      ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝
+
+  · ✦ · 🏆  R E T I R E D   I N   T H E   S T A R S  🏆 · ✦ ·
+
+   ✦ · · · · · · · · · · · · · · · · · · · · · · · · · · ✦
+"""
+
+lose_logo = """
+   ✦ · · · · · · · · · · · · · · · · · · · · · · · · · · ✦
+
+  ██████╗  █████╗ ███╗   ███╗███████╗
+  ██╔════╝ ██╔══██╗████╗ ████║██╔════╝
+  ██║  ███╗███████║██╔████╔██║█████╗
+  ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝
+  ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗
+   ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝
+
+  ██████╗ ██╗   ██╗███████╗██████╗
+  ██╔═══██╗██║   ██║██╔════╝██╔══██╗
+  ██║   ██║██║   ██║█████╗  ██████╔╝
+  ██║   ██║╚██╗ ██╔╝██╔══╝  ██╔══██╗
+  ╚██████╔╝ ╚████╔╝ ███████╗██║  ██║
+   ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝
+
+  · ✦ · 💀  T O N   6 1 8   A W A I T S   Y O U  💀 · ✦ ·
+
+   ✦ · · · · · · · · · · · · · · · · · · · · · · · · · · ✦
+"""
+
+
+
 #Ressouces
 wallet = 200
 
@@ -140,7 +179,7 @@ planet_prices = [
 cargo_hold = {
     "fuel cell": 0,
     "mineral": 0,
-    "water": 0,
+    "water": 3,
     "tech part": 0,
     "food": 0
 }
@@ -183,8 +222,7 @@ def cargo_hold_status(cargo_hold):
     for key in cargo_hold:
         print(F"{key}: {cargo_hold[key]}")
 
-
-def start_randomize_prices(planet_prices):
+def randomize_prices(planet_prices):
     """Function that is used at the beginning to randomize all prices"""
     for index in range(len(planet_prices)):
         for sell_price in range(0, len(planet_prices[index]['sell price'])):
@@ -192,17 +230,6 @@ def start_randomize_prices(planet_prices):
         for buy_price in range(0, len(planet_prices[index]['buy price'])):
             planet_prices[index]['buy price'][buy_price] = round(planet_prices[index]['sell price'][buy_price] * random.uniform(0.4, 0.7))
     return planet_prices
-
-
-def price_fluctuation_travel(planet_prices):
-    """Function that is used when the user decides to travel | Price fluctuation"""
-    for index in range(len(planet_prices)):
-        for buy_price in range(0, len(planet_prices[index]['buy price'])):
-            planet_prices[index]['buy price'][buy_price] += random.randint(-50, 50)
-        for sell_price in range(0, len(planet_prices[index]['sell price'][buy_price])):
-            planet_prices[index]['sell price'][sell_price] += random.randint(-50, 50)
-    return planet_prices
-
 
 def current_planet_status(current_planet):
     """Function that is used to display the different resource price |
@@ -217,7 +244,6 @@ f"(How much you will pay to buy some resources here)\n")
     for index in range(0, len(current_planet['resources'])):
         print(F"The {current_planet['resources'][index]} is at {current_planet['sell price'][index]}")
 
-
 def potential_planet_gain(cargo_hold, current_planet):
     """Function that is used to compare the cargo_hold with current_planet prices |
     if there is a match, the price of 1 cell will show up as a potentail gain"""
@@ -230,8 +256,8 @@ def potential_planet_gain(cargo_hold, current_planet):
 def user_action_choice(user_action):
     user_action = int(input(f"\nTime to strategi..strate..." 
     f"\n😅 it's time tell me what you want to do!" 
-    f"\n1. Buy resources on this planet" 
-    f"\n2. Sell resources on this planet" 
+    f"\n1. Sell resources on this planet" 
+    f"\n2. Buy resources on this planet" 
     f"\n3. Travel to another planet (cost: 20)"
     "\nAnswer: "))
     return user_action
@@ -275,10 +301,10 @@ def sell_operation(current_planet, cargo_hold, wallet, user_choice):
               F"\nYou don't have enough money!")
         return cargo_hold, wallet
     else:
-            temp_value = current_planet['resources'].index(user_choice)
-            wallet -= current_planet['sell price'][temp_value]
-            cargo_hold[user_choice] += 1
-            return cargo_hold, wallet
+        temp_value = current_planet['resources'].index(user_choice)
+        wallet -= current_planet['sell price'][temp_value]
+        cargo_hold[user_choice] += 1
+        return cargo_hold, wallet
 
 
 def travel_operation(current_planet, planet_prices, wallet):
@@ -298,16 +324,63 @@ yolo = welcome_joke(why_logo, write_logo, yolo)
 if yolo == "yes":
     #Clear the system + show current wallet + current cargo_hold
     system('clear')
-    wallet_status(wallet)
-    print(f"\n")
-    cargo_hold_status(cargo_hold)
 
-    #randomzie prices at the beginning, select planet among 5
-    print(f"\n")
-    start_randomize_prices(planet_prices)
-    current_planet = random.choice(planet_prices)
+    game_over = False
+    while game_over == False:
+        wallet_status(wallet)
+        print(f"\n")
+        cargo_hold_status(cargo_hold)
 
-    #Displaying current planet
-    current_planet_status(current_planet)
-    user_action = 0
-    user_action = user_action_choice(user_action)
+        #randomzie prices at the beginning, select planet among 5
+        print(f"\n")
+        randomize_prices(planet_prices)
+        current_planet = random.choice(planet_prices)
+
+        #Displaying current planet
+        current_planet_status(current_planet)
+        user_action = 0
+        user_action = user_action_choice(user_action)
+        if user_action == 1:
+            print()
+            user_choice = int(input(f"What resources to you want to sell?"
+                                f"\nfuel cells - Type '1'"
+                                f"\nmineral - Type '2'"
+                                f"\nwater - Type '3'"
+                                f"\ntech part - Type '4'"
+                                f"\nfood - Type '5'"
+                                f"\nAnswer: "))
+            user_choice = translate_user_option(user_choice)
+            cargo_hold, wallet = buy_operation(current_planet, cargo_hold, wallet, user_choice)
+            system('clear')
+            if wallet >= 1000:
+                game_over = True
+                print(win_logo)
+                print(f"COSMIC VICTORY! You can peacefully retired, TON 618 will not have you as a breakfast.. I don't even know what it eats as a breakfast.. a galaxy perhaps? 🤔")
+
+        elif user_action == 2:
+            user_choice = int(input(f"What resources do you want to buy?"
+                        f"\nfuel cells - Type '1'"
+                        f"\nmineral - Type '2'"
+                        f"\nwater - Type '3'"
+                        f"\ntech part - Type '4'"
+                        f"\nfood - Type '5'"
+                        f"\nAnswer: "))
+            user_choice = translate_user_option(user_choice)
+            cargo_hold, wallet = sell_operation(current_planet, cargo_hold, wallet, user_choice)
+            system('clear')
+            if wallet <= 0:
+                game_over = True
+                print(lose_logo)
+                print(f"CELESTIAL LOSE! On behalf of the entire Humanity, we will have to send you to TON 618.. at the speed of light! Hey, don't complain, it's only..\n"
+                    "10.8 billion years ish? I waited longer to get my driver license 😠\n" \
+                    "...What? It's out of reach because of the Expansi... I don't know what you're talking about, just GO! 🤭")
+
+        elif user_action == 3:
+            current_planet, wallet = travel_operation(current_planet, planet_prices, wallet)
+            randomize_prices(planet_prices)
+            if wallet <= 0:
+                game_over = True
+                print(lose_logo)
+                print(f"CELESTIAL LOSE! On behalf of the entire Humanity, we will have to send you to TON 618.. at the speed of light! Hey, don't complain, it's only..\n"
+                    "10.8 billion years ish? I waited longer to get my driver license 😠\n" \
+                    "...What? It's out of reach because of the Expansi... I don't know what you're talking about, just GO! 🤭")
