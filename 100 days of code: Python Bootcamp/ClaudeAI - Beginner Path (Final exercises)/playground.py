@@ -179,7 +179,7 @@ planet_prices = [
 cargo_hold = {
     "fuel cell": 0,
     "mineral": 0,
-    "water": 3,
+    "water": 0,
     "tech part": 0,
     "food": 0
 }
@@ -226,7 +226,7 @@ def randomize_prices(planet_prices):
     """Function that is used at the beginning to randomize all prices"""
     for index in range(len(planet_prices)):
         for sell_price in range(0, len(planet_prices[index]['sell price'])):
-            planet_prices[index]['sell price'][sell_price] = random.randint(150, 450)
+            planet_prices[index]['sell price'][sell_price] = random.randint(80, 600)
         for buy_price in range(0, len(planet_prices[index]['buy price'])):
             planet_prices[index]['buy price'][buy_price] = round(planet_prices[index]['sell price'][buy_price] * random.uniform(0.4, 0.7))
     return planet_prices
@@ -252,8 +252,8 @@ def potential_planet_gain(cargo_hold, current_planet):
             potential_gain = current_planet['buy price'][index]
             print(f"You could sell 1 {merch} for a total gain of {potential_gain}")
 
-
 def user_action_choice(user_action):
+    """Function that is used to ask user what they want to do on the current planet"""
     user_action = int(input(f"\nTime to strategi..strate..." 
     f"\n😅 it's time tell me what you want to do!" 
     f"\n1. Sell resources on this planet" 
@@ -261,8 +261,6 @@ def user_action_choice(user_action):
     f"\n3. Travel to another planet (cost: 20)"
     "\nAnswer: "))
     return user_action
-
-
 
 def translate_user_option(user_choice):
     """Function that is used to translate the user choice from 'A' to 'E' to the actual resource"""
@@ -277,7 +275,6 @@ def translate_user_option(user_choice):
         if user_choice == temporary_dict[key]:
             user_choice = key
     return user_choice
-
 
 def buy_operation(current_planet, cargo_hold, wallet, user_choice):
     """Function that is used to when user wants to sell resources from cargo_hold"""
@@ -306,7 +303,6 @@ def sell_operation(current_planet, cargo_hold, wallet, user_choice):
         cargo_hold[user_choice] += 1
         return cargo_hold, wallet
 
-
 def travel_operation(current_planet, planet_prices, wallet):
     """Function that is used when user wants to travel to another planet"""
     wallet -= 20
@@ -325,21 +321,26 @@ if yolo == "yes":
     #Clear the system + show current wallet + current cargo_hold
     system('clear')
 
+    #randomzie prices at the beginning, select planet among 5
+    print(f"\n")
+    randomize_prices(planet_prices)
+    current_planet = random.choice(planet_prices)
+
+    #Start of the loop for the game
     game_over = False
     while game_over == False:
+
+        #Displaying current planet
         wallet_status(wallet)
         print(f"\n")
         cargo_hold_status(cargo_hold)
-
-        #randomzie prices at the beginning, select planet among 5
-        print(f"\n")
-        randomize_prices(planet_prices)
-        current_planet = random.choice(planet_prices)
-
-        #Displaying current planet
         current_planet_status(current_planet)
+
+        #Ask user what they want to do
         user_action = 0
         user_action = user_action_choice(user_action)
+
+        #actions based on user choice with check if win/lose
         if user_action == 1:
             print()
             user_choice = int(input(f"What resources to you want to sell?"
