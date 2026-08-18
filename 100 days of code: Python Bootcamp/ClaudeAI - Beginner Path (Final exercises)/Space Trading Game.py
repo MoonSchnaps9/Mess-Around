@@ -229,7 +229,6 @@ def randomize_prices(planet_prices):
             planet_prices[index]['sell price'][sell_price] = random.randint(80, 600)
         for buy_price in range(0, len(planet_prices[index]['buy price'])):
             planet_prices[index]['buy price'][buy_price] = round(planet_prices[index]['sell price'][buy_price] * random.uniform(0.4, 0.7))
-    return planet_prices
 
 def current_planet_status(current_planet):
     """Function that is used to display the different resource price |
@@ -276,7 +275,7 @@ def translate_user_option(user_choice):
             user_choice = key
     return user_choice
 
-def buy_operation(current_planet, cargo_hold, wallet, user_choice):
+def sell_operation(current_planet, cargo_hold, wallet, user_choice):
     """Function that is used to when user wants to sell resources from cargo_hold"""
     temp_value = current_planet['resources'].index(user_choice)
 
@@ -289,7 +288,7 @@ def buy_operation(current_planet, cargo_hold, wallet, user_choice):
         cargo_hold[user_choice] -= 1
         return cargo_hold, wallet
 
-def sell_operation(current_planet, cargo_hold, wallet, user_choice):
+def buy_operation(current_planet, cargo_hold, wallet, user_choice):
     """Function that is used to when user wants to buy resources from planet"""
     temp_value = current_planet['resources'].index(user_choice)
 
@@ -335,6 +334,8 @@ if yolo == "yes":
         print(f"\n")
         cargo_hold_status(cargo_hold)
         current_planet_status(current_planet)
+        print(f"\n")
+        potential_planet_gain(cargo_hold, current_planet)
 
         #Ask user what they want to do
         user_action = 0
@@ -351,7 +352,7 @@ if yolo == "yes":
                                 f"\nfood - Type '5'"
                                 f"\nAnswer: "))
             user_choice = translate_user_option(user_choice)
-            cargo_hold, wallet = buy_operation(current_planet, cargo_hold, wallet, user_choice)
+            cargo_hold, wallet = sell_operation(current_planet, cargo_hold, wallet, user_choice)
             system('clear')
             if wallet >= 1000:
                 game_over = True
@@ -367,7 +368,7 @@ if yolo == "yes":
                         f"\nfood - Type '5'"
                         f"\nAnswer: "))
             user_choice = translate_user_option(user_choice)
-            cargo_hold, wallet = sell_operation(current_planet, cargo_hold, wallet, user_choice)
+            cargo_hold, wallet = buy_operation(current_planet, cargo_hold, wallet, user_choice)
             system('clear')
             if wallet <= 0:
                 game_over = True
