@@ -15,7 +15,7 @@ def describe_temperature(converted_temperature):
         return F"Dear human, {converted_temperature}°F it's FREEZING geez, you're in Finland or what? 😠"
 
     elif 32 <= converted_temperature <=59:
-        return F"A bit cold, but it would not kill a comsic snail... Eh? What? 😠"
+        return F"A bit cold, but it would not kill a cosmic snail... Eh? What? 😠"
 
     elif 60 <= converted_temperature <= 85:
         return F"This is what I am TALKING ABOUT! This is C.O.M.F.O.R.T, like our planet EARTH! (except during winter in Finland.. it's a cold chamber COUNTRY!"
