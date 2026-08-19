@@ -19,3 +19,5 @@ inventory = {
 def display_inventory(inventory):
     for item in inventory:
         print(f"You have {inventory[item]} {item}")
+
+        
