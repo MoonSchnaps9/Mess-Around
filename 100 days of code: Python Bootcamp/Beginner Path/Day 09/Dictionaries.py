@@ -25,4 +25,4 @@ print(programming_dictionary)
 for key in programming_dictionary:
     print(programming_dictionary[key])
 
-print(programming_dictionary[0])
+print(programming_dictionary)
