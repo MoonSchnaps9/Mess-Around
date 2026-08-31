@@ -43,7 +43,7 @@
 #      COIN VALUES:
 #        quarters = $0.25
 #        dimes    = $0.10
-#        nickles  = $0.05
+#        nickels  = $0.05
 #        pennies  = $0.01
 #
 #    - Calculate the monetary value inserted, e.g.
@@ -117,7 +117,7 @@ resources = {
 type_money = {
     "quarters": 0.25,
     "dimes": 0.10,
-    "nickles": 0.05,
+    "nickels": 0.05,
     "pennies": 0.01
 }
 
@@ -131,37 +131,37 @@ def report(resources, money):
             print(f"{item.capitalize()}: {resources[item]}g")
         else:
             print(f"{item.capitalize()}: {resources[item]}ml")
-    print(f"Money: ${money}")
+    print(f"Money: ${money:.2f}")
 
 def check_coffee(user_drink, drinks, resources):
     loop = True
     for ingredient in drinks[user_drink]["ingredients"]:
         if drinks[user_drink]["ingredients"][ingredient] > resources[ingredient]:
-            print(F"Sorry there is not enough {ingredient}.")
+            print(f"Sorry there is not enough {ingredient}.")
             loop = False
             return loop
     return loop
 
-def check_money(machine_money, type_money, quarters, dimes, nickles, pennies, drink, user_drink):
+def check_enough_money(machine_money, type_money, quarters, dimes, nickels, pennies, drink, user_drink):
     total_quarters = round((type_money["quarters"] * quarters),2)
     total_dimes = round((type_money["dimes"] * dimes),2)
-    total_nickles = round((type_money["nickles"] * nickles),2)
+    total_nickels = round((type_money["nickels"] * nickels),2)
     total_pennies = round((type_money["pennies"] * pennies),2)
-    sum = round((total_quarters + total_dimes + total_nickles + total_pennies),2)
+    total = round((total_quarters + total_dimes + total_nickels + total_pennies),2)
 
-    if sum < drink[user_drink]["cost"]:
+    if total < drink[user_drink]["cost"]:
         loop = False
-        print(F"Sorry that's not enough money, as a {user_drink} costs: {drink[user_drink]['cost']}\n" 
+        print(f"Sorry that's not enough money, as a {user_drink} costs: {drink[user_drink]['cost']:.2f}\n" 
               "Money refunded.")
         return loop, machine_money
-    elif sum >= drink[user_drink]["cost"]:
+    elif total >= drink[user_drink]["cost"]:
         machine_money += drink[user_drink]["cost"]
-        if sum - drink[user_drink]["cost"] > 0:
-            money_to_return = round((sum - drink[user_drink]["cost"]),2)
-            print(F"Btw, Here is ${money_to_return} in change.")
+        if total - drink[user_drink]["cost"] > 0:
+            money_to_return = round((total - drink[user_drink]["cost"]),2)
+            print(f"Btw, Here is ${money_to_return:.2f} in change.")
             loop = True
             return loop, machine_money
-        elif sum - drink[user_drink]["cost"] == 0:
+        elif total - drink[user_drink]["cost"] == 0:
             print("Thank you!")
             loop = True
             return loop, machine_money
@@ -170,22 +170,37 @@ def make_coffee(drinks, user_drink, resources):
     for ingredient in drinks[user_drink]['ingredients']:
         resources[ingredient] -= drinks[user_drink]["ingredients"][ingredient]
 
-    print(F"Amaze, Amaze!🥰 Here's your {user_drink}! Enjoyyyyyy...yyyyyyy...\n"
+    print(f"Amaze, Amaze!🥰 Here's your {user_drink}! Enjoyyyyyy...yyyyyyy...\n"
           "Too much hype sorry 😅")
 
     return resources
 
+def check_valid_input_money(quarters, dimes, nickels, pennies):
+    check = True
+    while check:
+        if not quarters.isdigit():
+            quarters = input("Could you please give a number? You made a typo for quarters: ")
+        elif not dimes.isdigit():
+            dimes = input("Could you please give a number? You made a typo for dimes: ")
+        elif not nickels.isdigit():
+            nickels = input("Could you please give a number? You made a typo for nickels: ")
+        elif not pennies.isdigit():
+            pennies = input("Could you please give a number? You made a typo for pennies: ")
+        else:
+            check = False
+
+    return int(quarters), int(dimes), int(nickels), int(pennies)
 
 
 #Creating While loop aka full program
 machine = True
 while machine:
-    user_choice = str(input("Tell me what would you like for a drink, and I'll explain why I can't help you (..unless you know where Sagittarius A* is 🧐)\n" \
+    user_choice = input("Tell me what you would like for a drink, and I'll explain why I can't help you (..unless you know where Sagittarius A* is 🧐)\n" \
     "Options: Martian Hot Chocolate/ Venusian coffee/ Earthian Pleasure\n" \
-    "Answer:").lower())
+    "Answer:").strip().lower()
 
     #(SECRET WORD) If user type "Messier 87*", it turns off the coffee machine
-    if user_choice == "messier 87":
+    if user_choice == "messier 87" or user_choice == "off":
         machine = False
 
     #(SECRET WORD) If user choose report, displaying current resources with money
@@ -193,22 +208,22 @@ while machine:
         report(resources, machine_money)
 
     #if user choose one of the available coffee:
-    elif user_choice == "martian hot chocolate" or user_choice == "venusian coffee" or user_choice == "earthian pleasure":
+    elif user_choice in available_drinks:
 
         #First check: Enough resources?
         loop = check_coffee(user_choice, available_drinks, resources)
 
         #Second check: Enough Money?
-        if loop == True:
-                quarters = int(input("how many quarters? "))
-                dimes = int(input("How many dimes? "))
-                nickles = int(input("How many nickles? "))
-                pennies = int(input("How many pennies? "))
+        if loop:
+            quarters = input("how many quarters? ")
+            dimes = input("How many dimes? ")
+            nickels = input("How many nickels? ")
+            pennies = input("How many pennies? ")
+            quarters, dimes, nickels, pennies = check_valid_input_money(quarters, dimes, nickels, pennies)
+            loop, machine_money = check_enough_money(machine_money, type_money, quarters, dimes, nickels, pennies, available_drinks, user_choice)
 
-                loop, machine_money = check_money(machine_money, type_money, quarters, dimes, nickles, pennies, available_drinks, user_choice)
-
-                if loop == True:
-                    resources = make_coffee(available_drinks, user_choice, resources)
+            if loop:
+                resources = make_coffee(available_drinks, user_choice, resources)
     else:
         print("Could you please ensure that you typed an existing drink?\n" \
         "I believe you with all my heart... or maybe not 😂")
