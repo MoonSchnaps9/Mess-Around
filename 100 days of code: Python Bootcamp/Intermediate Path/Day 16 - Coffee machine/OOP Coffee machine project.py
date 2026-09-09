@@ -84,13 +84,33 @@ from money_machine import MoneyMachine
 from menu import MenuItem, Menu
 
 coffee_maker = CoffeeMaker()
+money_machine = MoneyMachine()
+menu = Menu()
 
-variable = True
-while variable:
-    user_choice = input("What do you want?").lower()
+coffee_machine_on = True
+while coffee_machine_on:
+    user_choice = input(F"What do you want?\n"
+                        F"{menu.get_items()}?\n"
+                        "Here: ").lower()
 
     if user_choice == "off":
-        variable = False
+        coffee_machine_on = False
 
     elif user_choice == "report":
         coffee_maker.report()
+        money_machine.report()
+
+    elif menu.find_drink(user_choice) == None:
+        print("Either your made a typo, or your drink is not available at this coffee machine\n" \
+        "Try again please")
+
+    elif menu.find_drink(user_choice):
+        drink = menu.find_drink(user_choice)
+
+        if not coffee_maker.is_resource_sufficient(drink):
+            print(F"Sorry, your drink is not available at the moment.. We made too much money out of it 😆")
+
+        elif coffee_maker.is_resource_sufficient(drink):
+            
+            if money_machine.make_payment(drink.cost):
+                coffee_maker.make_coffee(drink)
