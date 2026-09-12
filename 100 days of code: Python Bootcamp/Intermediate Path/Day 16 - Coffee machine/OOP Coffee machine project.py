@@ -1,5 +1,5 @@
 # ============================================================
-# DAY 15 — COFFEE MACHINE
+# DAY 16 — COFFEE MACHINE
 # ============================================================
 #
 # ------------------------------------------------------------
@@ -81,7 +81,7 @@
 
 from coffee_maker import CoffeeMaker
 from money_machine import MoneyMachine
-from menu import MenuItem, Menu
+from menu import Menu
 
 coffee_maker = CoffeeMaker()
 money_machine = MoneyMachine()
@@ -100,17 +100,16 @@ while coffee_machine_on:
         coffee_maker.report()
         money_machine.report()
 
-    elif menu.find_drink(user_choice) == None:
-        print("Either your made a typo, or your drink is not available at this coffee machine\n" \
-        "Try again please")
-
-    elif menu.find_drink(user_choice):
+    else:
         drink = menu.find_drink(user_choice)
 
-        if not coffee_maker.is_resource_sufficient(drink):
-            print(F"Sorry, your drink is not available at the moment.. We made too much money out of it 😆")
+        if drink is None:
+            pass
 
-        elif coffee_maker.is_resource_sufficient(drink):
-            
-            if money_machine.make_payment(drink.cost):
-                coffee_maker.make_coffee(drink)
+        else:
+            if not coffee_maker.is_resource_sufficient(drink):
+                print(F"Sorry, your drink is not available at the moment.. We made too much money out of it 😆")
+
+            else:
+                if money_machine.make_payment(drink.cost):
+                    coffee_maker.make_coffee(drink)
