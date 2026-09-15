@@ -21,3 +21,6 @@ class QuizBrain:
 #Create method called Still_has_question()
 #Return a bolean depending on the value of question_number
 #Use the while loop to show the next question until the end
+    
+    def still_has_question(self):
+        return self.question_number < len(self.question_list)
