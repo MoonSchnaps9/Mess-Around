@@ -10,3 +10,7 @@ class QuizBrain:
 
 #Retrieve the item at the current question_number from the question_list
 #use the input() function to show the user the question text and ask for the user's answer
+    
+    def next_question(self):
+        user_answer = input(f"Q.{self.question_number + 1}: {self.question_list[self.question_number].text} (True/False)?: ")
+        self.question_number += 1

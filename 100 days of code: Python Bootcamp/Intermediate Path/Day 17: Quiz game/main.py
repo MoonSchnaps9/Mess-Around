@@ -1,5 +1,6 @@
 from data import question_data
 from question_model import Question
+from quiz_brain import QuizBrain
 
 #Write a FOR loop to iterate over the question_data.
 #Create a Question object from each entry in question_data.
@@ -11,4 +12,6 @@ for item in question_data:
     question = Question(item["text"], item["answer"])
     question_bank.append(question)
 
-print(question_bank[0].text)
+quiz = QuizBrain(question_bank)
+
+quiz.next_question()
