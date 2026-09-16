@@ -15,8 +15,8 @@ class QuizBrain:
 #use the input() function to show the user the question text and ask for the user's answer
     
     def next_question(self):
-        current_question = self.questionlist[self.question_number]
-        user_answer = input(f"Q.{self.question_number + 1}: {self.question_list[self.question_number].text} (True/False)?: ")
+        current_question = self.question_list[self.question_number]
+        user_answer = input(f"Q.{self.question_number + 1}: {current_question.text} (True/False)?: ")
         self.question_number += 1
         self.check_answer(user_answer, current_question.answer)
 
@@ -38,3 +38,4 @@ class QuizBrain:
             print(" You got it wrong!")
         print(f"The correct answer was: {correct_answer}")
 
+#5TH -> create the score tracking
