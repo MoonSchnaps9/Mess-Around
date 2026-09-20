@@ -33,9 +33,11 @@ class QuizBrain:
 
     def check_answer(self, user_answer, correct_answer):
         if user_answer.lower() == correct_answer.lower():
+            self.score += 1
             print("You got it right!")
         else:
-            print(" You got it wrong!")
+            print("You got it wrong!")
         print(f"The correct answer was: {correct_answer}")
+        print(f"Your current score is: {self.score}/{self.question_number}\n")
 
 #5TH -> create the score tracking
