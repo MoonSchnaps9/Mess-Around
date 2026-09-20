@@ -1,6 +1,5 @@
 #Draw a square (100x100)
 from turtle import Turtle, Screen
-import heroes
 
 
 vega = Turtle()
