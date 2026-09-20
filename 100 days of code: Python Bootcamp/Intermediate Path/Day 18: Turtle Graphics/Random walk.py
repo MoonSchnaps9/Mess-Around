@@ -4,32 +4,30 @@
 import random
 from turtle import Turtle, Screen
 
+
 vega = Turtle()
+useful = Screen()
 
-colors = [
-    "red", 
-    "orange", 
-    "yellow", 
-    "green", 
-    "blue", 
-    "purple", 
-    "magenta", 
-    "cyan", 
-    "brown", 
-    "black"
-]
+useful.colormode(255)
 
-pensize = random.randint(0,15)
+def random_color():
+    r = random.randint(0,255)
+    g = random.randint(0,255)
+    b = random.randint(0,255)
+    colors = (r, g , b)
+    return colors
+
+pensize = random.randint(1,15)
 speed = random.randint(0,10)
 
 vega.pensize(pensize)
 vega.speed(speed)
 
 for _ in range(50):
+    colors = random_color()
     vega.setheading(random.randint(0,360))
-    vega.color(random.choice(colors))
+    vega.color(colors)
     vega.forward(30)
 
 
-useful = Screen()
 useful.exitonclick()
